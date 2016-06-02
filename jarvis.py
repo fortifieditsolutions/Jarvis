@@ -131,7 +131,8 @@ class Jarvis():
         if subject.find('toggle') != -1:
             self.jarvis_lights_toggle()
         if subject.find('set') != -1:
-            brightness = re.findall('\d+',subject)
+            brightness_list = re.findall('\d+',subject)
+            brightness = brightness_list[0]
             if int(brightness) > 100:
                 brightness = "100"
             elif int(brightness) < 0:
