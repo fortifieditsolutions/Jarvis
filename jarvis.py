@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 import imaplib
+import smtplib
 import config
 import email
 import requests
@@ -20,7 +21,7 @@ class Jarvis():
     self contained main declaration below.
     '''
 
-    def __init__(self, _email, _password, _sender, _maker, _imap_server, _imap_port, _imap_folder):
+    def __init__(self, _email, _password, _sender, _maker, _imap_server, _imap_port, _imap_folder, _smtp_server = "", _smtp_port = ""):
         '''
         _email = The email address used to login to the bot's IMAP account.
         _password = The password for the bot's IMAP account.
@@ -47,6 +48,8 @@ class Jarvis():
         self._imap_server = _imap_server
         self._imap_port = _imap_port
         self._imap_folder = _imap_folder
+        self._smtp_server = _smtp_server
+        self._smtp_port = _smtp_port
 
     def get_email(self):
         return self._email
@@ -204,11 +207,13 @@ if __name__ == '__main__':
     _imap_server = config.imap['server']
     _imap_port = config.imap['port']
     _imap_folder = config.imap['folder']
+    _smtp_server = config.smtp['server']
+    _smtp_port = config.smtp['port']
 
     '''
     Instanciate Jarvis
     '''
-    jarvis = Jarvis(_email, _password, _sender, _maker, _imap_server, _imap_port, _imap_folder)
+    jarvis = Jarvis(_email, _password, _sender, _maker, _imap_server, _imap_port, _imap_folder, _smtp_server, _smtp_port)
 
     '''
     Get an IMAP Connection
